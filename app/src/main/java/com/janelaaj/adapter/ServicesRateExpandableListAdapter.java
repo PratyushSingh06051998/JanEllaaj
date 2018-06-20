@@ -2,9 +2,11 @@ package com.janelaaj.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
@@ -98,22 +100,21 @@ public class ServicesRateExpandableListAdapter extends BaseExpandableListAdapter
 
         TextView lblListHeader = convertView.findViewById(R.id.lblListHeader);
         ImageView deleteButton = convertView.findViewById(R.id.deleteButton);
-        Switch sb = convertView.findViewById(R.id.switchy);
-        sb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    //code
-                    Toast.makeText(_context, "checked", Toast.LENGTH_SHORT).show();
-                }else{
-                    //code
-                    Toast.makeText(_context, "not checked", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
 
 
-        Log.i("mlpnko",String.valueOf(sb.isChecked()));
+        if (isExpanded) {
+            Log.i("mknjbl","asd "+String.valueOf(groupPosition));
+            convertView.findViewById(R.id.listExpandLayout).setBackgroundResource(R.drawable.login_border);
+            lblListHeader.setTextColor(Color.parseColor("#ffffff"));
+            convertView.findViewById(R.id.viewSpace).setVisibility(View.GONE);
+        } else {
+            Log.i("mknjbl","czx"+String.valueOf(groupPosition));
+            convertView.findViewById(R.id.listExpandLayout).setBackgroundColor(Color.parseColor("#BFBFBF"));
+            lblListHeader.setTextColor(Color.parseColor("#757575"));
+            convertView.findViewById(R.id.viewSpace).setVisibility(View.INVISIBLE);
+        }
+
+
         Log.i("mlpnko",String.valueOf(groupPosition));
 
         lblListHeader.setTypeface(null, Typeface.BOLD);

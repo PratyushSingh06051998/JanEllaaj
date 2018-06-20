@@ -75,8 +75,9 @@ public class ServicesRatesEditActivity extends AppCompatActivity {
         setContentView(R.layout.servicesrateedit_screen);
 
         SelectedServices =  new ArrayList<>();
-        start();
         setupToolbar();
+        start();
+
 
         ServiceInfo = new ArrayList<ServiceModel.info>();
 
@@ -101,29 +102,27 @@ public class ServicesRatesEditActivity extends AppCompatActivity {
             }
         });
         expListView = this.findViewById(R.id.listExpandble);
-        listGroupLayout=this.findViewById(R.id.listGroupLayout);
-        addserviceLayout=this.findViewById(R.id.addserviceLayout);
-        listGroupLayout.setBackgroundResource(R.drawable.login_border);
-        addlocation=this.findViewById(R.id.addlocation);
+//        listGroupLayout=this.findViewById(R.id.listGroupLayout);
+//        addlocation=this.findViewById(R.id.addlocation);
         btn_save=this.findViewById(R.id.btn_save);
-        rupeeIcon=this.findViewById(R.id.rupeeIcon);
+//        rupeeIcon=this.findViewById(R.id.rupeeIcon);
         manage_location_services = this.findViewById(R.id.manage_location_services);
         title_header = this.findViewById(R.id.titleHeader);
 
 
 
-        addlocation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addserviceLayout.setVisibility(View.VISIBLE);
-            }
-        });
-        btn_save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addserviceLayout.setVisibility(View.GONE);
-            }
-        });
+//        addlocation.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                addserviceLayout.setVisibility(View.VISIBLE);
+//            }
+//        });
+//        btn_save.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                addserviceLayout.setVisibility(View.GONE);
+//            }
+//        });
 
         prepareListData();
     }
@@ -178,13 +177,14 @@ public class ServicesRatesEditActivity extends AppCompatActivity {
 
                                 manage_location_services.setTypeface(tf4);
                                 title_header.setTypeface(tf4);
-                                btn_save.setTypeface(tf3);
+//                                btn_save.setTypeface(tf3);
 
 
 
                                 Typeface fontawesome_font = FontManager.getFontTypefaceMaterialDesignIcons(ServicesRatesEditActivity.this, "fonts/fontawesome-webfont.ttf");
-                                rupeeIcon.setTypeface(fontawesome_font);
-                                rupeeIcon.setText(Html.fromHtml("&#xf156;"));
+//                                rupeeIcon.setTypeface(fontawesome_font);
+//                                rupeeIcon.setText(Html.fromHtml("&#xf156;"));
+
                                 listAdapter = new ServicesRateExpandableListAdapter(ServicesRatesEditActivity.this, listDataHeader, listDataChild,SelectedServices);
                                 expListView.setAdapter(listAdapter);
                                 expListView.setOnGroupClickListener(new OnGroupClickListener() {
@@ -201,6 +201,8 @@ public class ServicesRatesEditActivity extends AppCompatActivity {
                                     @Override
                                     public void onGroupExpand(int groupPosition) {
                                         Log.i("mlpnko",String.valueOf(groupPosition)+"asd");
+                                        expListView.setDividerHeight(R.dimen._10dp);
+                                        expListView.setDivider(getResources().getDrawable(android.R.color.transparent));
                                         Toast.makeText(getApplicationContext(), listDataHeader.get(groupPosition) + " Expanded", Toast.LENGTH_SHORT).show();
                                     }
                                 });
